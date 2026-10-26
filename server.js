@@ -1,4 +1,4 @@
-
+require('./Routes/recipeRoutes')
 require('dotenv').config();
 const express = require('express')
 const port     = process.env.PORT || 3000;
@@ -19,7 +19,7 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', recipeController.getAllRecipes)
-app.use('/recipes', require('./routes/recipeRoutes'))
+app.use('/recipes', require('./Routes/recipeRoutes'))
 
 mongoose.connect(recipeBuilderdb)
   .then(() => {
@@ -27,58 +27,3 @@ mongoose.connect(recipeBuilderdb)
     app.listen(port, () => console.log(`Server on port ${port}`))
   })
   .catch(err => console.error('Connection error:', err.message))
-/*
-
-app.post('/messages', (req, res) => {
-  db.collection('messages').insertOne(
-    {name: req.body.name, 
-      msg: req.body.msg, 
-      thumbUp: 0, 
-      thumbDown:0}, 
-    (err, result) => {
-    if (err) return console.log(err)
-    console.log('saved to databasehh')
-    res.redirect('/')
-    console.log(result)
-  })
-})
-//updating the likes
-app.put('/messages', (req, res) => {
-  db.collection('messages')
-  .findOneAndUpdate(
-    {name: req.body.name, msg: req.body.msg}, 
-    {$set: {
-      thumbUp:req.body.thumbUp + 1
-    }
-  }, {
-    sort: {_id: -1},
-    upsert: true
-  }, (err, result) => {
-    if (err) return res.send(err)
-      console.log(result)
-    res.send(result)
-  })
-})
-//updating the dislikes
-app.put('/manitoAbajo', (req, res) => {
-  db.collection('messages')
-  .findOneAndUpdate(
-    {name: req.body.name, msg: req.body.msg}, 
-    {$set: { 
-      thumbDown:req.body.thumbDown - 1
-    }
-  }, {
-    sort: {_id: -1},
-    upsert: true
-  }, (err, result) => {
-    if (err) return res.send(err)
-      console.log(result)
-    res.send(result)
-  })
-})
-app.delete('/messages', (req, res) => {
-  db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
-    if (err) return res.send(500, err)
-    res.send('Message deleted!')
-  })
-})*/

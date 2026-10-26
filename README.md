@@ -1,8 +1,8 @@
 # Recipe Builder 🥗
 A web app to create, browse, edit and delete recipes. Build a recipe with its category, servings, prep and cook times, difficulty and instructions, and see every recipe on the same page.
 
-![21 Savage](assets/homepage.png)
-![21 Savage](assets/update.png)
+![homepage](assets/homepage.png)
+![update](assets/update.png)
 
 ## Features
  
